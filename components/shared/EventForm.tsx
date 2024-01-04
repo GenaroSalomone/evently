@@ -117,7 +117,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             )}
           />
         </div>
-        
+
         <div className="flex flex-col gap-5 md:flex-row">
           <FormField
             control={form.control}
@@ -246,6 +246,8 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                                 Free Ticket
                               </label>
                               <Checkbox
+                                onCheckedChange={field.onChange}
+                                checked={field.value}
                                 id="isFree"
                                 className="mr-2 h-5 w-5 border-2 border-primary-500"
                               />
