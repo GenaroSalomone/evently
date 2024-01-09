@@ -12,8 +12,8 @@ export interface IEvent extends Document {
   price?: string;
   isFree: boolean;
   url?: string;
-  category?: { _id: string; name: string };
-  organizer?: { _id: string; firstName: string; lastName: string };
+  category: { _id: string; name: string };
+  organizer: { _id: string; firstName: string; lastName: string };
 }
 
 const eventSchema = new Schema({
