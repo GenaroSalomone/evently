@@ -4,6 +4,7 @@ import {
   CreateEventParams,
   DeleteEventParams,
   GetAllEventsParams,
+  UpdateEventParams,
 } from "@/types";
 import { handleError } from "../utils";
 import { initiateDBConnection } from "../database";
@@ -88,3 +89,25 @@ export const deleteEvent = async ({ eventId, path }: DeleteEventParams) => {
     handleError(error);
   }
 };
+
+export async function updateEvent({ userId, event, path }: UpdateEventParams) {
+  try {
+    await initiateDBConnection();
+
+    const eventToUpdate = await Event.findById(event._id)
+    if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
+      throw new Error('Unauthorized or event not found')
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event._id,
+      { ...event, category: event.categoryId },
+      { new: true }
+    )
+    revalidatePath(path)
+
+    return JSON.parse(JSON.stringify(updatedEvent))
+  } catch (error) {
+    handleError(error)
+  }
+}
