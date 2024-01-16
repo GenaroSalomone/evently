@@ -12,7 +12,8 @@ import User from "../database/models/user.model";
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   try {
     // SDK de Mercado Pago
-    const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCES_TOKEN! });
+    // const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCES_TOKEN! });
+    const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCES_TOKEN_PROD! });
     const preference = await new Preference(client).
       create({
         body: {
@@ -38,7 +39,8 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
       })
       // .then(console.log)
       // .catch(console.log);
-    redirect(preference.sandbox_init_point!)
+    // redirect(preference.sandbox_init_point!)
+    redirect(preference.init_point!)
 
   } catch (error) {
     throw error;
