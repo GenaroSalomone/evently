@@ -14,6 +14,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
     // SDK de Mercado Pago
     // const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCES_TOKEN! });
     const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCES_TOKEN_PROD! });
+    const price = order.isFree ? 0 : Number(order.price);
     const preference = await new Preference(client).
       create({
         body: {
@@ -22,7 +23,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
               id: 'order',
               title: order.eventTitle,
               quantity: 1,
-              unit_price: Number(order.price)
+              unit_price: price
             }
           ],
           metadata: {
