@@ -1,10 +1,9 @@
 import { createOrder } from "@/lib/actions/order.actions";
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import { NextRequest, NextResponse } from "next/server";
-import { formatDateTime } from "@/lib/utils";
 
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCES_TOKEN!,
+  accessToken: process.env.MP_ACCES_TOKEN_PROD!,
 });
 
 export async function POST(request: NextRequest) {
