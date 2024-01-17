@@ -60,7 +60,9 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
                         {formatDateTime(row.createdAt).dateTime}
                       </td>
                       <td className="min-w-[100px] py-4 text-right">
-                        {formatPrice(row.totalAmount)}
+                        {isNaN(Number(row.totalAmount))
+                          ? "Free"
+                          : formatPrice(row.totalAmount)}
                       </td>
                     </tr>
                   ))}

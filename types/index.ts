@@ -120,6 +120,11 @@ export type CreateOrderParams = {
   createdAt: Date
 }
 
+export type CreateFreeOrderParams = {
+  eventId: string;
+  buyerId: string;
+};
+
 export type GetOrdersByEventParams = {
   eventId: string
   searchString: string
@@ -130,6 +135,11 @@ export type GetOrdersByUserParams = {
   limit?: number
   page: string | number | null
 }
+
+export type CheckOrderParams = {
+  eventId: string;
+  buyerId: string;
+};
 
 // ====== URL QUERY PARAMS
 export type UrlQueryParams = {

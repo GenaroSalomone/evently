@@ -31,8 +31,8 @@ const OrderSchema = new Schema({
   },
   mercadoPagoId: { 
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   totalAmount: {
     type: String,
